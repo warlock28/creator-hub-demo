@@ -1,0 +1,42 @@
+{
+    "tech_stack": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Supabase",
+        "Tailwind CSS"
+    ],
+    "features": [
+        {
+            "name": "Authentication",
+            "description": "Handles user authentication using Supabase. Requires valid session for most operations.",
+            "files": [
+                "src/lib/supabase.ts",
+                ".env.local"
+            ]
+        },
+        {
+            "name": "Creator Profile",
+            "description": "Displays and edits creator profiles.",
+            "files": [
+                "src/pages/creator/CreatorProfile.tsx",
+                "src/pages/creator/creator-profile-features/ExperienceSection.tsx"
+            ]
+        },
+        {
+            "name": "Services",
+            "description": "Service data interactions via Supabase 'services' table. Requires creator role.",
+            "files": [
+                "src/pages/creator/CreatorServices.tsx",
+                "supabase/schema.sql"
+            ]
+        },
+        {
+            "name": "Database Schema",
+            "description": "Supabase Postgres Schema defining tables like 'services', 'profiles'.",
+            "files": [
+                "supabase/schema.sql"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8080/http://localhost:8080/",
+  "loginUser": "warlock01.professional@gmail.com",
+  "loginPassword": "09090909",
+  "executionArgs": {
+    "projectName": "career-hub-main",
+    "projectPath": "d:\\warlocknitin\\Hands-on-prectice\\career-hub-main",
+    "testIds": [],
+    "additionalInstruction": "Generate and execute a Node.js API test script (e.g., test-api.js) to test the Supabase 'services' table.\nThe script should use '@supabase/supabase-js' to connect to the backend defined in '.env.local'.\nIMPORTANT: You must handle authentication. Create a temporary user or sign in to get a session, as RLS requires 'auth.uid()'.\n\nImplement the following tests based on the user's request:\n\nPriority Tests:\n1. **Valid POST Request**: Insert a service with all required fields (title, price, creator_id). Verify success.\n2. **Missing Required Field**: Attempt to insert excluding 'title'. Verify error.\n3. **Invalid Data Type**: Attempt to insert 'price' as a string \"invalid\". Verify error.\n4. **Exceed Maximum Field Length**: Attempt to insert a very long 'title' (>255 chars if applicable, or just generic long). Verify response.\n5. **Valid Input Multiple Times**: Insert valid data 3 times. Verify all succeed.\n\nEdge Case Tests:\n1. **Empty Payload**: Attempt to insert {}. Verify error.\n2. **SQL Injection Attempt**: Insert 'title' with SQL injection patterns (e.g. \"'; DROP TABLE services; --\"). Verify it is sanitized (treated as string).\n3. **Special Characters**: Insert 'title' with special chars (e.g. \"Service @#$$%^\"). Verify success.\n4. **Boundary Testing**: Insert 'price' = 0 and 'price' = 99999999. Verify behavior.\n5. **Concurrent POST Requests**: Send 5 requests simultaneously. Verify handling.\n\nParse '.env.local' manually if needed to get credentials.\nOutput the results in the markdown report.",
+    "envs": {
+      "API_KEY": "sk-user-cYZADbSWSAvxz308O8ZS94l_qbYFYXw5PQzCdcg5wobTgfjo5XtPfZ8GLTdeN6sHLC79452R5ROMevxSJ8WXPcUU-_iNxvzqIWMZauC4uhGqZZyD34MwbDFJVn_4QoJvj-g"
+    }
+  }
+}
