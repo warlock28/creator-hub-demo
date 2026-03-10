@@ -21,15 +21,22 @@ interface ProfileHeaderProps {
 
 // Animated Counter Component
 function AnimatedCounter({ value, gradient }: { value: string; gradient: string }) {
-    const nodeRef = useRef<HTMLParagraphElement>(null);
-    const isInView = useInView(nodeRef, { once: true });
+    const numberRef = useRef<HTMLSpanElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { once: true });
     const motionValue = useMotionValue(0);
     const hasAnimatedRef = useRef(false);
+
+    // Extract suffix from value (K, K+, %, ★, +, etc.)
+    const getSuffix = () => {
+        const match = value.match(/[^\d.].*/);
+        return match ? match[0] : '';
+    };
+    const suffix = getSuffix();
 
     useEffect(() => {
         if (isInView && !hasAnimatedRef.current) {
             hasAnimatedRef.current = true;
-            // Extract numeric value from string (handles "245K", "8.5%", "4.9★", "150")
             const numericMatch = value.match(/[\d.]+/);
             if (numericMatch) {
                 const targetValue = parseFloat(numericMatch[0]);
@@ -42,52 +49,50 @@ function AnimatedCounter({ value, gradient }: { value: string; gradient: string 
     }, [isInView, value, motionValue]);
 
     const rounded = useTransform(motionValue, (latest) => {
-        // Determine decimal places based on original value
         const hasDecimal = value.includes('.');
         return hasDecimal ? latest.toFixed(1) : Math.round(latest).toString();
     });
 
     useEffect(() => {
         const unsubscribe = rounded.on("change", (latest) => {
-            if (nodeRef.current) {
-                // Reconstruct the full value with suffix
-                let displayValue = latest;
-                if (value.includes('K')) displayValue = latest + 'K';
-                else if (value.includes('%')) displayValue = latest + '%';
-                else if (value.includes('★')) displayValue = latest + '★';
-
-                nodeRef.current.textContent = displayValue;
+            if (numberRef.current) {
+                numberRef.current.textContent = latest;
             }
         });
 
         return () => unsubscribe();
     }, [rounded, value]);
 
-    // Get initial display value
-    const getInitialValue = () => {
-        if (value.includes('K')) return '0K';
-        if (value.includes('%')) return '0%';
-        if (value.includes('★')) return '0★';
-        return '0';
-    };
-
     return (
-        <p
-            ref={nodeRef}
+        <div
+            ref={containerRef}
             className="font-display text-base sm:text-lg md:text-2xl font-bold mb-0.5 sm:mb-1 tabular-nums number-display"
             style={{
-                background: gradient,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
                 fontFamily: '"Libertinus Serif Display", Georgia, serif',
                 fontFeatureSettings: '"tnum"',
                 fontVariantNumeric: 'tabular-nums',
                 letterSpacing: '0.02em'
             }}
         >
-            {getInitialValue()}
-        </p>
+            {/* Numeric value with gradient */}
+            <span
+                ref={numberRef}
+                style={{
+                    background: gradient,
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                }}
+            >
+                0
+            </span>
+            {/* Suffix in neutral color */}
+            {suffix && (
+                <span style={{ color: '#EF4444', fontSize: '0.75em' }}>
+                    {suffix}
+                </span>
+            )}
+        </div>
     );
 }
 
@@ -97,12 +102,12 @@ function StatsSection({ creator }: { creator: CreatorProfileType }) {
         {
             value: String(creator.stats.followers),
             label: "Followers",
-            gradient: "linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)"
+            gradient: "linear-gradient(135deg, #EF4444 0%, #F87171 100%)"
         },
         {
             value: String(creator.stats.campaigns),
             label: "Campaigns",
-            gradient: "linear-gradient(135deg, #EC4899 0%, #F472B6 100%)"
+            gradient: "linear-gradient(135deg, #EF4444 0%, #F87171 100%)"
         },
         {
             value: String(creator.stats.avgEngagement),
@@ -112,7 +117,7 @@ function StatsSection({ creator }: { creator: CreatorProfileType }) {
         {
             value: "4.9★",
             label: "Rating",
-            gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)"
+            gradient: "linear-gradient(135deg, #EF4444 0%, #F87171 100%)"
         },
     ];
 
@@ -258,7 +263,7 @@ export function ProfileHeader({ creator }: ProfileHeaderProps) {
 
             {/* Top accent line */}
             <div className="absolute top-0 left-0 right-0 h-1" style={{
-                background: 'linear-gradient(90deg, #3B82F6 0%, #0EA5E9 50%, #EC4899 100%)'
+                background: '#2563EB'
             }} />
 
             <div className="relative z-10">

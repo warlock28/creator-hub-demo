@@ -30,7 +30,7 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
             addToCart({
                 creatorId: creator.id,
                 serviceId: service.id,
-                serviceName: service.title,
+                serviceName: service.title || service.name,
                 price: service.price,
                 deliveryDays: service.deliveryDays,
             });
@@ -114,7 +114,7 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                             letterSpacing: '-0.01em'
                                         }}
                                     >
-                                        {service.title}
+                                        {service.title || service.name}
                                     </h3>
                                     {/* Checkmark appears on hover */}
                                     <div

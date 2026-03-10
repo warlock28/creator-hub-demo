@@ -72,7 +72,7 @@ export default function CreatorServices() {
             addToCart({
                 creatorId: creator.id,
                 serviceId: service.id,
-                serviceName: service.title,
+                serviceName: service.title || service.name,
                 price: service.price,
                 deliveryDays: service.deliveryDays,
             });
@@ -121,8 +121,8 @@ export default function CreatorServices() {
                                     onClick={() => navigate('/cart')}
                                     className="flex items-center gap-1 sm:gap-2 h-8 sm:h-9 px-3 sm:px-5 rounded-full font-medium text-[10px] sm:text-sm transition-all hover:scale-105 active:scale-95"
                                     style={{
-                                        background: 'linear-gradient(135deg, #2563EB 0%, #1E40AF 100%)',
-                                        boxShadow: '0 4px 12px rgba(37, 99, 235, 0.25)',
+                                        background: 'linear-gradient(135deg, #D4AF37 0%, #C19A2E 100%)',
+                                        boxShadow: '0 4px 12px rgba(212, 175, 55, 0.35)',
                                         color: '#FFFFFF'
                                     }}
                                 >
@@ -152,8 +152,8 @@ export default function CreatorServices() {
                                     disabled={cartCount === 0}
                                     className="flex items-center gap-1 sm:gap-2 h-8 sm:h-9 px-3 sm:px-5 rounded-full font-medium text-[10px] sm:text-sm transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{
-                                        background: cartCount === 0 ? '#94A3B8' : 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
-                                        boxShadow: cartCount === 0 ? 'none' : '0 4px 12px rgba(236, 72, 153, 0.25)',
+                                        background: cartCount === 0 ? '#94A3B8' : 'linear-gradient(135deg, #1A1A1A 0%, #000000 100%)',
+                                        boxShadow: cartCount === 0 ? 'none' : '0 4px 12px rgba(26, 26, 26, 0.3)',
                                         color: '#FFFFFF'
                                     }}
                                 >
@@ -195,13 +195,13 @@ export default function CreatorServices() {
                                                             boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 25px 50px -12px rgba(0, 0, 0, 0.04)',
                                                         }}
                                                     >
-                                                        {/* Hover Overlay - adds blue theme on hover */}
+                                                        {/* Hover Overlay - adds gold theme on hover */}
                                                         <div
                                                             className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                                                             style={{
-                                                                border: '2px solid #3B82F6',
-                                                                background: 'linear-gradient(145deg, #EFF6FF 0%, #F8FAFC 100%)',
-                                                                boxShadow: '0 8px 24px -4px rgba(59, 130, 246, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
+                                                                border: '2px solid #D4AF37',
+                                                                background: 'linear-gradient(145deg, #FFFBF0 0%, #FFF8E7 100%)',
+                                                                boxShadow: '0 8px 24px -4px rgba(212, 175, 55, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
                                                             }}
                                                         />
 
@@ -211,8 +211,8 @@ export default function CreatorServices() {
                                                             <div
                                                                 className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 h-6 w-6 rounded-full flex items-center justify-center transition-opacity duration-200"
                                                                 style={{
-                                                                    background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
-                                                                    boxShadow: '0 2px 6px rgba(59, 130, 246, 0.4)'
+                                                                    background: 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
+                                                                    boxShadow: '0 2px 6px rgba(46, 125, 50, 0.4)'
                                                                 }}
                                                             >
                                                                 <CheckCircle2 className="h-3.5 w-3.5 text-white" />
@@ -226,17 +226,18 @@ export default function CreatorServices() {
                                                             {/* Service Header */}
                                                             <div className="mb-3">
                                                                 <h3
-                                                                    className="text-base font-bold line-clamp-2"
+                                                                    className="text-lg font-bold line-clamp-2 leading-snug"
                                                                     style={{
-                                                                        color: '#2563EB',
+                                                                        color: '#1A1A1A',
+                                                                        letterSpacing: '-0.01em'
                                                                     }}
                                                                 >
-                                                                    {service.title}
+                                                                    {service.title || service.name}
                                                                 </h3>
                                                             </div>
 
                                                             {/* Description */}
-                                                            <p className="text-xs mb-4 flex-grow line-clamp-3 leading-relaxed" style={{ color: '#6B7280' }}>
+                                                            <p className="text-sm mb-4 flex-grow line-clamp-2 leading-relaxed" style={{ color: '#666666' }}>
                                                                 {service.description}
                                                             </p>
 
@@ -249,26 +250,26 @@ export default function CreatorServices() {
                                                                 <div
                                                                     className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
                                                                     style={{
-                                                                        background: 'linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 100%)',
+                                                                        background: 'linear-gradient(135deg, #FFFBF0 0%, #FFF4E0 100%)',
                                                                     }}
                                                                 />
                                                                 <div className="flex items-center justify-between relative z-10">
                                                                     <div className="flex flex-col gap-0.5">
-                                                                        <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ color: '#6B7280' }}>
+                                                                        <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ color: '#999999' }}>
                                                                             Delivery
                                                                         </span>
                                                                         <div className="flex items-center gap-1">
-                                                                            <Clock className="h-3 w-3" style={{ color: '#374151' }} />
-                                                                            <span className="text-xs font-bold" style={{ color: '#1C1917' }}>
+                                                                            <Clock className="h-3 w-3" style={{ color: '#999999' }} />
+                                                                            <span className="text-xs font-bold" style={{ color: '#333333' }}>
                                                                                 {service.deliveryDays} days
                                                                             </span>
                                                                         </div>
                                                                     </div>
                                                                     <div className="flex flex-col items-end gap-0.5">
-                                                                        <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ color: '#6B7280' }}>
+                                                                        <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ color: '#999999' }}>
                                                                             Price
                                                                         </span>
-                                                                        <span className="font-bold text-lg number-display" style={{ color: '#1C1917' }}>
+                                                                        <span className="font-bold text-lg number-display" style={{ color: '#D4AF37' }}>
                                                                             ₹{service.price.toLocaleString()}
                                                                         </span>
                                                                     </div>
@@ -282,16 +283,16 @@ export default function CreatorServices() {
                                                                 style={{
                                                                     background: inCart
                                                                         ? 'transparent'
-                                                                        : 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
+                                                                        : 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
                                                                     border: inCart
-                                                                        ? '2px solid #2563EB'
+                                                                        ? '2px solid #2E7D32'
                                                                         : 'none',
                                                                     color: inCart
-                                                                        ? '#2563EB'
+                                                                        ? '#2E7D32'
                                                                         : '#FFFFFF',
                                                                     boxShadow: inCart
                                                                         ? 'none'
-                                                                        : '0 4px 14px rgba(37, 99, 235, 0.3)'
+                                                                        : '0 4px 14px rgba(46, 125, 50, 0.35)'
                                                                 }}
                                                             >
                                                                 {inCart ? (
