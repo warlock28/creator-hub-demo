@@ -37,21 +37,8 @@ export function HeroSection() {
 
   return (
     <section className="relative flex flex-col justify-center overflow-hidden pt-16 pb-4 md:pt-20 md:pb-6">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-white to-pink-50/50" />
-
-      {/* Floating Gradient Orbs */}
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute top-20 right-10 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-gradient-to-br from-violet-400/30 to-purple-400/30 rounded-full blur-3xl"
-      />
-      <motion.div
-        style={{ y: y2 }}
-        className="absolute bottom-20 left-10 w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-gradient-to-br from-pink-400/20 to-rose-400/20 rounded-full blur-3xl"
-      />
-
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      {/* Background - using scoped variable */}
+      <div className="absolute inset-0 bg-background" />
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 py-4 md:py-8">
         <div className="max-w-6xl mx-auto">
@@ -63,10 +50,10 @@ export function HeroSection() {
             transition={{ duration: 0.5 }}
             className="flex justify-center mb-4"
           >
-            <Badge className="bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 border-violet-200 px-4 py-2 text-sm font-medium shadow-sm">
-              <Sparkles className="w-4 h-4 mr-2 text-violet-500" />
+            <Badge className="bg-accent text-primary border-accent-border px-4 py-2 text-sm font-medium shadow-sm hover:bg-accent/80">
+              <Sparkles className="w-4 h-4 mr-2 text-primary" />
               India's #1 Creator Marketplace
-              <TrendingUp className="w-4 h-4 ml-2 text-green-500" />
+              <TrendingUp className="w-4 h-4 ml-2 text-primary" />
             </Badge>
           </motion.div>
 
@@ -83,10 +70,10 @@ export function HeroSection() {
               {/* Main Headline */}
               <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
                 Connect with
-                <span className="block mt-1 bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <span className="block mt-1 text-foreground">
                   Verified Creators
                 </span>
-                <span className="block mt-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-700">
+                <span className="block mt-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-muted-foreground">
                   Directly. Safely. Affordably.
                 </span>
               </h1>
@@ -106,10 +93,10 @@ export function HeroSection() {
                     transition={{ delay: 0.3 + index * 0.1 }}
                     className="flex items-center gap-2 text-sm text-gray-600"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-100 to-pink-100 flex items-center justify-center">
-                      <point.icon className="w-4 h-4 text-violet-600" />
+                    <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+                      <point.icon className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="font-medium">{point.text}</span>
+                    <span className="font-medium text-foreground">{point.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -124,7 +111,7 @@ export function HeroSection() {
                 <Link to="/discover">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-xl shadow-violet-500/30 hover:shadow-2xl transition-all duration-300 group px-6 h-12"
+                    className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 group px-6 h-12"
                   >
                     <Users className="mr-2 h-5 w-5" />
                     <span className="font-semibold">Find Creators</span>
@@ -135,9 +122,9 @@ export function HeroSection() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="w-full sm:w-auto border-2 border-violet-300 text-violet-700 hover:border-violet-500 hover:bg-violet-50 transition-all duration-300 group px-6 h-12 font-semibold"
+                    className="w-full sm:w-auto border border-input bg-background hover:bg-muted text-foreground transition-all duration-300 group px-6 h-12 font-semibold"
                   >
-                    <Sparkles className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+                    <Sparkles className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform text-primary" />
                     Join as Creator
                   </Button>
                 </Link>
@@ -164,7 +151,7 @@ export function HeroSection() {
                       className="w-10 h-10 rounded-full border-2 border-white shadow-md object-cover"
                     />
                   ))}
-                  <div className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-r from-violet-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold shadow-md">
+                  <div className="w-10 h-10 rounded-full border-2 border-white bg-primary flex items-center justify-center text-white text-xs font-bold shadow-md">
                     +12K
                   </div>
                 </div>
@@ -188,9 +175,10 @@ export function HeroSection() {
             >
               {/* Main Creator Card */}
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl" />
+                {/* Simplified Blur Effect */}
+                <div className="absolute -inset-4 bg-gray-200/50 rounded-3xl blur-2xl" />
 
-                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                <div className="relative bg-card rounded-3xl shadow-2xl overflow-hidden border border-border">
                   <img
                     src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop"
                     alt="Creator working"
@@ -203,59 +191,59 @@ export function HeroSection() {
                         <img
                           src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face"
                           alt="Creator"
-                          className="w-14 h-14 rounded-full border-2 border-violet-200 object-cover"
+                          className="w-14 h-14 rounded-full border-2 border-white object-cover shadow-sm"
                         />
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="font-bold text-gray-900">Priya Sharma</h3>
+                            <h3 className="font-bold text-foreground">Priya Sharma</h3>
                             <Verified className="w-5 h-5 text-blue-500" />
                           </div>
-                          <p className="text-sm text-gray-500">Tech & Lifestyle Creator</p>
+                          <p className="text-sm text-muted-foreground">Tech & Lifestyle Creator</p>
                         </div>
                       </div>
-                      <Badge className="bg-green-100 text-green-700 border-0">Available</Badge>
+                      <Badge className="bg-accent text-primary border-0">Available</Badge>
                     </div>
 
                     <div className="grid grid-cols-3 gap-4 mb-4">
-                      <div className="text-center p-3 bg-gray-50 rounded-xl">
-                        <p className="text-lg font-bold text-violet-600">245K</p>
-                        <p className="text-xs text-gray-500">Followers</p>
+                      <div className="text-center p-3 bg-secondary rounded-xl">
+                        <p className="text-lg font-bold text-foreground">245K</p>
+                        <p className="text-xs text-muted-foreground">Followers</p>
                       </div>
-                      <div className="text-center p-3 bg-gray-50 rounded-xl">
-                        <p className="text-lg font-bold text-pink-600">8.2%</p>
-                        <p className="text-xs text-gray-500">Engagement</p>
+                      <div className="text-center p-3 bg-secondary rounded-xl">
+                        <p className="text-lg font-bold text-foreground">8.2%</p>
+                        <p className="text-xs text-muted-foreground">Engagement</p>
                       </div>
-                      <div className="text-center p-3 bg-gray-50 rounded-xl">
-                        <p className="text-lg font-bold text-amber-600">4.9★</p>
-                        <p className="text-xs text-gray-500">Rating</p>
+                      <div className="text-center p-3 bg-secondary rounded-xl">
+                        <p className="text-lg font-bold text-amber-500">4.9★</p>
+                        <p className="text-xs text-muted-foreground">Rating</p>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs text-gray-500">Starting from</p>
-                        <p className="text-xl font-light text-gray-900">₹---<span className="text-sm font-normal text-gray-500">/post</span></p>
+                        <p className="text-xs text-muted-foreground">Starting from</p>
+                        <p className="text-xl font-light text-foreground">₹---<span className="text-sm font-normal text-muted-foreground">/post</span></p>
                       </div>
-                      <Button className="bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg">
+                      <Button className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20">
                         Book Now
                       </Button>
                     </div>
                   </div>
                 </div>
 
-                {/* Floating Elements */}
+                {/* Floating Elements - Simplified Colors */}
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-gray-100"
+                  className="absolute -top-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-border"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
-                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+                      <CheckCircle2 className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">Escrow Protected</p>
-                      <p className="font-bold text-green-600">100% Safe</p>
+                      <p className="text-xs text-muted-foreground">Escrow Protected</p>
+                      <p className="font-bold text-primary">100% Safe</p>
                     </div>
                   </div>
                 </motion.div>
@@ -263,13 +251,13 @@ export function HeroSection() {
                 <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl border border-gray-100"
+                  className="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl border border-border"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-gray-600" />
                     </div>
-
+                    {/* Removed extra text for cleaner look on small float */}
                   </div>
                 </motion.div>
               </div>
@@ -285,8 +273,8 @@ export function HeroSection() {
         transition={{ duration: 0.8, delay: 0.8 }}
         className="relative z-10 py-6 md:py-8"
       >
-        <p className="text-center text-sm md:text-base text-gray-500 mb-5 font-medium px-4">
-          Explore creators across <span className="text-violet-600 font-semibold">50+ categories</span>
+        <p className="text-center text-sm md:text-base text-muted-foreground mb-5 font-medium px-4">
+          Explore creators across <span className="text-primary font-semibold">50+ categories</span>
         </p>
 
         {/* Marquee Container */}
@@ -409,19 +397,18 @@ export function HeroSection() {
 
 export function CTASection() {
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-purple-600 to-pink-600" />
+    <section className="py-16 md:py-24 relative overflow-hidden bg-foreground">
 
       {/* Animated Background Elements */}
-      <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-white/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-white/5 rounded-full blur-3xl" />
 
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-white/30"
+            className="absolute w-2 h-2 rounded-full bg-white/20"
             style={{
               top: `${15 + i * 15}%`,
               left: `${10 + i * 15}%`,
@@ -447,7 +434,7 @@ export function CTASection() {
           className="max-w-4xl mx-auto text-center"
         >
           {/* Badge */}
-          <Badge className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-sm px-4 py-2">
+          <Badge className="mb-6 bg-white/10 text-white border-white/20 backdrop-blur-sm px-4 py-2 hover:bg-white/20">
             <Sparkles className="h-4 w-4 mr-2" />
             Limited Time: Zero Commission for Early Users
           </Badge>
@@ -460,7 +447,7 @@ export function CTASection() {
           </h2>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
             Join <span className="font-bold">12,000+ creators</span> and <span className="font-bold">5,000+ brands</span> already growing together on India's most trusted creator marketplace
           </p>
 
@@ -469,7 +456,7 @@ export function CTASection() {
             <Link to="/join">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-white text-white hover:bg-white-10 shadow-2xl transition-all duration-300 group px-8 h-14 font-bold"
+                className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 shadow-2xl transition-all duration-300 group px-8 h-14 font-bold"
               >
                 <Sparkles className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
                 Get Started Free
@@ -480,7 +467,7 @@ export function CTASection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto border-2 border-white/40 bg-white/10 text-white hover:bg-white/20 hover:border-white/60 backdrop-blur-sm transition-all duration-300 group px-8 h-14 font-semibold"
+                className="w-full sm:w-auto border-2 border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/30 backdrop-blur-sm transition-all duration-300 group px-8 h-14 font-semibold"
               >
                 <Users className="mr-2 h-5 w-5" />
                 Explore Creators

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Search, ShoppingCart, User, Heart, Star,
+    Search, ShoppingCart, Heart, Star, Menu, X,
     ChevronRight, ChevronLeft, Leaf, Truck, Clock,
     ShieldCheck, ArrowRight, Zap, Eye, Shuffle
 } from "lucide-react";
@@ -37,6 +37,35 @@ export function GroceryTheme({ brand, products, onAddToCart, onProductClick, isI
     const [searchTerm, setSearchTerm] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
     const [scrolled, setScrolled] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Dynamic Hero Slides Data
+    const heroSlides = [
+        {
+            title: "Fresh Vegetables",
+            subtitle: "Big Discount",
+            desc: "Save up to 50% off on your first order. Fresh products delivered to your doorstep.",
+            discount: 50,
+            image: brand.coverImage || "https://cdn-icons-png.flaticon.com/512/2329/2329865.png",
+            bg: "bg-[#dbf7e6]", // Light mint green
+            buttonColor: "bg-[#7c5dfa] hover:bg-[#6b4df0]", // Purple
+            badgeColor: "bg-[#fdc040]", // Yellow
+            rating: 4.9,
+            reviews: "10k+"
+        },
+        {
+            title: "Organic Fruits",
+            subtitle: "Healthy Life",
+            desc: "Get the best organic fruits directly from the farm. 100% fresh and natural.",
+            discount: 30,
+            image: "https://cdn-icons-png.flaticon.com/512/3194/3194766.png",
+            bg: "bg-[#fff3e3]", // Light yellow/orange
+            buttonColor: "bg-[#3bb77e] hover:bg-[#2fa76d]", // Green
+            badgeColor: "bg-[#fdc040]",
+            rating: 4.8,
+            reviews: "8k+"
+        }
+    ];
 
     const categories = ["All", ...Array.from(new Set(products.map(p => p.category)))];
 
@@ -64,54 +93,74 @@ export function GroceryTheme({ brand, products, onAddToCart, onProductClick, isI
         };
     };
 
+    // Auto-advance slides
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
     return (
-        <div className="min-h-screen bg-[#f8f9fa]" style={{ fontFamily: "'Quicksand', 'Inter', sans-serif" }}>
+        <div className="min-h-screen bg-[#f8f9fa] relative" style={{ fontFamily: "'Quicksand', 'Inter', sans-serif" }}>
+
             {/* Promo Bar */}
-            <div className="bg-[#3bb77e] text-white text-center py-2.5 text-sm font-medium">
+            <div className="bg-[#3bb77e] text-white text-center py-2.5 text-sm font-medium relative z-50">
                 🚚 Free delivery on orders over ₹500 | Fresh & Organic Guaranteed
             </div>
 
             {/* Header */}
-            <header className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${scrolled ? "shadow-md" : "shadow-sm"}`}>
+            <header
+                className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-shadow duration-300 ${scrolled ? "shadow-md" : "shadow-sm"}`}
+            >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16 md:h-20">
-                        {/* Logo */}
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-[#def9ec] rounded-full flex items-center justify-center">
-                                <Leaf className="w-5 h-5 text-[#3bb77e]" />
+                    <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16' : 'h-20'}`}>
+
+                        {/* 1. Left Section: Logo */}
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-[#def9ec] rounded-full flex items-center justify-center">
+                                    <Leaf className="w-5 h-5 text-[#3bb77e]" />
+                                </div>
+                                <span className="text-xl md:text-2xl font-bold text-[#253D4E]">
+                                    {brand.name}
+                                </span>
                             </div>
-                            <span className="text-xl md:text-2xl font-bold text-[#253D4E]">{brand.name}</span>
                         </div>
 
-                        {/* Search */}
-                        <div className="hidden md:block flex-1 max-w-lg mx-8">
-                            <div className="relative">
+                        {/* 2. Middle Section: Search */}
+                        <div className="hidden md:block flex-1 max-w-lg mx-12">
+                            <div className="relative group">
                                 <input
                                     type="text"
                                     placeholder="Search for items..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full h-11 pl-4 pr-12 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:border-[#3bb77e] focus:ring-1 focus:ring-[#3bb77e]/30"
+                                    className="w-full h-11 pl-12 pr-4 rounded-full border border-gray-200 bg-gray-50 text-[#253D4E] text-sm focus:outline-none focus:border-[#3bb77e] focus:bg-white transition-all"
                                 />
-                                <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                             </div>
                         </div>
 
-                        {/* Actions */}
-                        <div className="flex items-center gap-4 md:gap-6">
-                            <button className="hidden md:flex items-center gap-2 text-[#253D4E] hover:text-[#3bb77e] transition-colors">
-                                <User className="w-5 h-5" />
-                                <span className="text-sm font-medium">Account</span>
+                        {/* 3. Right Section: Actions */}
+                        <div className="flex items-center gap-4">
+                            <button className="hidden md:flex items-center gap-2 hover:opacity-80 transition-opacity text-[#253D4E]">
+                                <Heart className="w-6 h-6" />
                             </button>
-                            <button className="relative">
-                                <ShoppingCart className="w-6 h-6 text-[#253D4E]" />
-                                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#3bb77e] text-white text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+
+                            <button className="relative group">
+                                <div className="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
+                                    <ShoppingCart className="w-6 h-6 text-[#253D4E]" />
+                                    <span className="absolute top-0 right-0 w-5 h-5 bg-[#3bb77e] text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+                                        3
+                                    </span>
+                                </div>
                             </button>
                         </div>
                     </div>
 
                     {/* Mobile Search */}
-                    <div className="md:hidden pb-3">
+                    <div className={`md:hidden pb-4 transition-all ${scrolled ? 'hidden' : 'block'}`}>
                         <div className="relative">
                             <input
                                 type="text"
@@ -126,50 +175,116 @@ export function GroceryTheme({ brand, products, onAddToCart, onProductClick, isI
                 </div>
             </header>
 
-            {/* Hero */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
-                <div className="relative bg-gradient-to-br from-[#def9ec] to-[#c8f0dc] rounded-2xl md:rounded-3xl overflow-hidden">
-                    <div className="grid md:grid-cols-2 items-center min-h-[300px] md:min-h-[380px]">
-                        {/* Left Content */}
-                        <div className="p-6 md:p-12 lg:p-14 z-10">
-                            <span className="inline-flex items-center gap-1.5 bg-[#fdc040] text-[#253D4E] text-xs font-bold px-3 py-1.5 rounded-full mb-4">
-                                <Zap className="w-3.5 h-3.5" /> Free Shipping
-                            </span>
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#253D4E] leading-tight mb-4">
-                                Fresh Vegetables<br />
-                                <span className="text-[#3bb77e]">Big Discount</span>
-                            </h1>
-                            <p className="text-gray-600 text-base md:text-lg mb-6 max-w-md">
-                                Save up to 50% off on your first order. Fresh products delivered to your doorstep.
-                            </p>
-                            <Button className="bg-[#3bb77e] hover:bg-[#2fa76d] text-white rounded-full h-12 px-8 text-base font-semibold shadow-lg shadow-[#3bb77e]/20">
-                                Shop Now <ArrowRight className="w-5 h-5 ml-2" />
-                            </Button>
-                        </div>
+            {/* Dynamic Hero Slider */}
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+                <div className="relative w-full overflow-hidden rounded-2xl md:rounded-[32px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentSlide}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className={`relative ${heroSlides[currentSlide].bg} min-h-[350px] md:min-h-[450px] grid md:grid-cols-2 items-center overflow-hidden`}
+                        >
+                            {/* Content */}
+                            <div className="p-8 md:p-16 lg:p-20 z-10 relative">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    <span className={`inline-flex items-center gap-2 ${heroSlides[currentSlide].badgeColor} text-[#253D4E] text-xs font-bold px-4 py-1.5 rounded-full mb-6 shadow-sm`}>
+                                        <Zap className="w-3.5 h-3.5" /> Free Shipping
+                                    </span>
+                                </motion.div>
 
-                        {/* Right Image */}
-                        <div className="hidden md:flex items-center justify-center p-6 relative">
-                            <div className="w-full max-w-[280px] aspect-square rounded-full bg-white/50 flex items-center justify-center">
-                                <img
-                                    src={brand.coverImage}
-                                    alt="Fresh Produce"
-                                    className="w-4/5 h-4/5 object-contain drop-shadow-xl"
-                                    onError={(e) => {
-                                        e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/2329/2329865.png";
-                                    }}
-                                />
+                                <motion.h1
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#253D4E] leading-[1.1] mb-6 tracking-tight"
+                                >
+                                    {heroSlides[currentSlide].title}<br />
+                                    <span className="text-[#3bb77e]">{heroSlides[currentSlide].subtitle}</span>
+                                </motion.h1>
+
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="text-gray-600 text-lg md:text-xl mb-8 max-w-lg leading-relaxed"
+                                >
+                                    {heroSlides[currentSlide].desc}
+                                </motion.p>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    <Button
+                                        className={`${heroSlides[currentSlide].buttonColor} text-white rounded-full h-14 px-10 text-base font-bold shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all transform hover:-translate-y-1`}
+                                    >
+                                        Shop Now <ArrowRight className="w-5 h-5 ml-2" />
+                                    </Button>
+                                </motion.div>
                             </div>
-                            {/* Floating Badge */}
-                            <div className="absolute bottom-6 left-2 bg-white rounded-xl p-3 shadow-lg flex items-center gap-3">
-                                <div className="w-9 h-9 bg-yellow-100 rounded-full flex items-center justify-center">
-                                    <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                                </div>
-                                <div>
-                                    <div className="font-bold text-[#253D4E] text-sm">4.9 Rating</div>
-                                    <div className="text-xs text-gray-500">10k+ Reviews</div>
-                                </div>
+
+                            {/* Image Side */}
+                            <div className="hidden md:flex items-center justify-center p-8 relative h-full">
+                                {/* Decorative Circles */}
+                                <div className="absolute w-[450px] h-[450px] bg-white/40 rounded-full blur-3xl -top-20 -right-20 pointer-events-none"></div>
+                                <div className="absolute w-[300px] h-[300px] bg-white/60 rounded-full blur-2xl bottom-10 right-20 pointer-events-none"></div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                                    transition={{ delay: 0.3, duration: 0.6 }}
+                                    className="relative z-10 w-full max-w-[450px] aspect-square flex items-center justify-center"
+                                >
+                                    <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-full transform scale-90"></div>
+                                    <img
+                                        src={heroSlides[currentSlide].image}
+                                        alt="Hero Product"
+                                        className="relative z-10 w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 font-bold"
+                                        onError={(e) => {
+                                            e.currentTarget.src = "https://cdn-icons-png.flaticon.com/512/2329/2329865.png";
+                                        }}
+                                    />
+
+                                    {/* Floating Rating Card */}
+                                    <motion.div
+                                        initial={{ y: 20, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.8 }}
+                                        className="absolute bottom-10 -left-4 bg-white/95 backdrop-blur rounded-2xl p-4 shadow-xl flex items-center gap-3 border border-gray-100 z-20"
+                                    >
+                                        <div className="w-10 h-10 bg-[#fff3e3] rounded-full flex items-center justify-center">
+                                            <Star className="w-5 h-5 text-[#fdc040] fill-current" />
+                                        </div>
+                                        <div>
+                                            <div className="font-bold text-[#253D4E] text-base">{heroSlides[currentSlide].rating} Rating</div>
+                                            <div className="text-xs text-gray-500 font-medium">{heroSlides[currentSlide].reviews} Reviews</div>
+                                        </div>
+                                    </motion.div>
+                                </motion.div>
                             </div>
-                        </div>
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* Slider Indicators */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+                        {heroSlides.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentSlide(idx)}
+                                className={`w-2.5 h-2.5 rounded-full transition-all ${currentSlide === idx
+                                    ? "bg-[#3bb77e] w-8"
+                                    : "bg-gray-300 hover:bg-gray-400"
+                                    }`}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>

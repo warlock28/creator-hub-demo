@@ -376,50 +376,36 @@ export default function BrandDiscoveryPage() {
                         </motion.div>
                     )}
 
-                    {/* Results Header */}
-                    <div className="flex items-center justify-between mb-4 sm:mb-6">
-                        <div>
-                            <h3 className="font-semibold text-base sm:text-lg">
-                                {filteredBrands.length === 0
-                                    ? "No brands found"
-                                    : `${filteredBrands.length} Brand${filteredBrands.length !== 1 ? "s" : ""} Found`}
-                            </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground">
-                                {selectedCategory !== "all"
-                                    ? `in ${BRAND_CATEGORIES.find(c => c.id === selectedCategory)?.name}`
-                                    : "Showing all categories"}
-                            </p>
-                        </div>
-                    </div>
-
                     {/* Brand Grid - 3 Cards Per Row */}
-                    {filteredBrands.length === 0 ? (
-                        <div className="text-center py-10 sm:py-12 md:py-16">
-                            <div className="max-w-md mx-auto">
-                                <div className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 rounded-full bg-secondary/50 flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                                    <Search className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 text-muted-foreground" />
+                    <div className="mt-6 sm:mt-8">
+                        {filteredBrands.length === 0 ? (
+                            <div className="text-center py-10 sm:py-12 md:py-16">
+                                <div className="max-w-md mx-auto">
+                                    <div className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20 rounded-full bg-secondary/50 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                        <Search className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 text-muted-foreground" />
+                                    </div>
+                                    <h3 className="font-display text-lg sm:text-xl font-semibold mb-2">No brands found</h3>
+                                    <p className="text-muted-foreground text-sm sm:text-base mb-4 sm:mb-6">
+                                        Try adjusting your filters or search query
+                                    </p>
+                                    <Button onClick={clearFilters} variant="outline" size="sm" className="text-sm">
+                                        Clear All Filters
+                                    </Button>
                                 </div>
-                                <h3 className="font-display text-lg sm:text-xl font-semibold mb-2">No brands found</h3>
-                                <p className="text-muted-foreground text-sm sm:text-base mb-4 sm:mb-6">
-                                    Try adjusting your filters or search query
-                                </p>
-                                <Button onClick={clearFilters} variant="outline" size="sm" className="text-sm">
-                                    Clear All Filters
-                                </Button>
                             </div>
-                        </div>
-                    ) : (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
-                        >
-                            {filteredBrands.map((brand, index) => (
-                                <BrandCard key={brand.id} brand={brand as Brand} index={index} />
-                            ))}
-                        </motion.div>
-                    )}
+                        ) : (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
+                            >
+                                {filteredBrands.map((brand, index) => (
+                                    <BrandCard key={brand.id} brand={brand as Brand} index={index} />
+                                ))}
+                            </motion.div>
+                        )}
+                    </div>
 
                 </div>
             </section>

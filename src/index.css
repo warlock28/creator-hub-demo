@@ -12,6 +12,55 @@
     --background: 0 0% 99%;
     --foreground: 240 10% 10%;
 
+    /* ... existing global vars ... */
+  }
+
+  /* Scoped Home Page Theme */
+  .theme-home {
+    /* Base Neutrals */
+    --background: 60 11% 98%;    /* #FAFAF8 */
+    --background-secondary: 84 9% 95%; /* #F3F4F2 */
+    --card: 0 0% 100%;           /* #FFFFFF */
+    --border: 218 11% 91%;       /* #E5E7EB - Tailwind coolGray-200 approx */
+    
+    /* Text Colors */
+    --foreground: 220 39% 11%;   /* #111827 - Primary Title */
+    --muted-foreground: 215 14% 34%; /* #374151 - Secondary Text */
+    --description: 220 9% 46%;   /* #6B7280 */
+    
+    /* Primary Accent (Green) */
+    --primary: 142 76% 36%;      /* #16A34A */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 142 72% 29%; /* #15803D */
+    
+    /* Accents */
+    --accent: 144 75% 96%;       /* #ECFDF3 */
+    --accent-foreground: 142 72% 29%;
+    --accent-border: 140 76% 85%; /* #BBF7D0 */
+    
+    /* Status */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --rating-star: 45 92% 50%;   /* #F59E0B */
+    
+    /* Buttons */
+    --btn-primary-bg: 142 76% 36%;
+    --btn-primary-fg: 0 0% 100%;
+    --btn-secondary-bg: 0 0% 100%;
+    --btn-secondary-fg: 220 39% 11%;
+    --btn-secondary-border: 218 11% 84%; /* #D1D5DB */
+    
+    /* Shadows */
+    --shadow-card: 0 8px 30px rgba(17,24,39,0.06);
+    --shadow-card-hover: 0 12px 40px rgba(17,24,39,0.08);
+    --shadow-btn-primary: 0 6px 20px rgba(22,163,74,0.25);
+  }
+
+  :root {
+    /* Core Colors - Indigo/Violet Primary */
+    --background: 0 0% 99%;
+    --foreground: 240 10% 10%;
+
     --card: 57, 19%, 99%;
     /* Warm cream base for all cards */
     --card-foreground: 32 24% 22%;

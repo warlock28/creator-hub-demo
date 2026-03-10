@@ -208,11 +208,11 @@ const BrandCard = ({ testimonial, position }: { testimonial: BrandTestimonial; p
                 rounded-3xl p-5 md:p-7 border backdrop-blur-sm
                 transition-all duration-500 ease-out will-change-transform
                 ${isCenter
-                    ? 'z-20 scale-100 opacity-100 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-white via-violet-50/80 to-pink-50/60 shadow-2xl shadow-violet-500/25 border-violet-200'
+                    ? 'z-20 scale-100 opacity-100 -translate-x-1/2 -translate-y-1/2 bg-card shadow-2xl shadow-gray-200/50 border-gray-100'
                     : position === 'left'
-                        ? 'z-10 scale-[0.85] opacity-60 -translate-x-[140%] -translate-y-1/2 bg-white/90 shadow-xl border-gray-200'
+                        ? 'z-10 scale-[0.85] opacity-60 -translate-x-[140%] -translate-y-1/2 bg-card/90 shadow-xl border-gray-100'
                         : position === 'right'
-                            ? 'z-10 scale-[0.85] opacity-60 translate-x-[40%] -translate-y-1/2 bg-white/90 shadow-xl border-gray-200'
+                            ? 'z-10 scale-[0.85] opacity-60 translate-x-[40%] -translate-y-1/2 bg-card/90 shadow-xl border-gray-100'
                             : 'z-0 scale-75 opacity-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none'
                 }
             `}
@@ -229,7 +229,7 @@ const BrandCard = ({ testimonial, position }: { testimonial: BrandTestimonial; p
         >
             {/* Glow effect for center card */}
             {isCenter && (
-                <div className="absolute -inset-1 bg-gradient-to-r from-violet-400/30 via-pink-400/30 to-violet-400/30 rounded-3xl blur-2xl -z-10 opacity-70" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-3xl blur-2xl -z-10 opacity-70" />
             )}
 
             {/* Quote Icon */}
@@ -237,8 +237,8 @@ const BrandCard = ({ testimonial, position }: { testimonial: BrandTestimonial; p
 
             {/* Result Badge */}
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 transition-all duration-500 ${isCenter
-                ? 'bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 scale-100'
-                : 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-600 scale-95'
+                ? 'bg-accent text-primary scale-100'
+                : 'bg-secondary text-muted-foreground scale-95'
                 }`}>
                 <TrendingUp className="h-4 w-4" />
                 <span className="font-bold text-sm">{testimonial.results.metric}</span>
@@ -323,11 +323,11 @@ const CreatorCard = ({ testimonial, position }: { testimonial: CreatorTestimonia
                 rounded-3xl p-5 md:p-7 border backdrop-blur-sm
                 transition-all duration-500 ease-out will-change-transform
                 ${isCenter
-                    ? 'z-20 scale-100 opacity-100 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-white via-pink-50/80 to-violet-50/60 shadow-2xl shadow-pink-500/25 border-pink-200'
+                    ? 'z-20 scale-100 opacity-100 -translate-x-1/2 -translate-y-1/2 bg-card shadow-2xl shadow-gray-200/50 border-gray-100'
                     : position === 'left'
-                        ? 'z-10 scale-[0.85] opacity-60 -translate-x-[140%] -translate-y-1/2 bg-white/90 shadow-xl border-pink-100'
+                        ? 'z-10 scale-[0.85] opacity-60 -translate-x-[140%] -translate-y-1/2 bg-card/90 shadow-xl border-gray-100'
                         : position === 'right'
-                            ? 'z-10 scale-[0.85] opacity-60 translate-x-[40%] -translate-y-1/2 bg-white/90 shadow-xl border-pink-100'
+                            ? 'z-10 scale-[0.85] opacity-60 translate-x-[40%] -translate-y-1/2 bg-card/90 shadow-xl border-gray-100'
                             : 'z-0 scale-75 opacity-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none'
                 }
             `}
@@ -344,7 +344,7 @@ const CreatorCard = ({ testimonial, position }: { testimonial: CreatorTestimonia
         >
             {/* Glow effect for center card */}
             {isCenter && (
-                <div className="absolute -inset-1 bg-gradient-to-r from-pink-400/30 via-violet-400/30 to-pink-400/30 rounded-3xl blur-2xl -z-10 opacity-70" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-3xl blur-2xl -z-10 opacity-70" />
             )}
 
             {/* Quote Icon */}
@@ -420,17 +420,17 @@ export function TestimonialsSection() {
     const creatorCarousel = useSmoothCarousel(creatorTestimonials.length, 5000);
 
     return (
-        <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 via-white to-violet-50/30 relative overflow-hidden">
+        <section className="py-16 md:py-24 bg-background-secondary relative overflow-hidden">
             {/* Background Decorations */}
-            <div className="absolute top-20 left-0 w-72 h-72 bg-violet-200/30 rounded-full blur-3xl" />
-            <div className="absolute bottom-20 right-0 w-96 h-96 bg-pink-200/30 rounded-full blur-3xl" />
+            <div className="absolute top-20 left-0 w-72 h-72 bg-white/50 rounded-full blur-3xl opacity-60" />
+            <div className="absolute bottom-20 right-0 w-96 h-96 bg-accent rounded-full blur-3xl opacity-30" />
 
             {/* Floating particles */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {[...Array(5)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-violet-400 to-pink-400 opacity-20"
+                        className="absolute w-2 h-2 rounded-full bg-primary/20"
                         style={{
                             top: `${20 + i * 15}%`,
                             left: `${10 + i * 18}%`,
@@ -457,13 +457,13 @@ export function TestimonialsSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12 md:mb-16"
                 >
-                    <Badge className="bg-gradient-to-r from-violet-600 to-pink-600 text-white border-0 px-4 py-2 text-sm font-medium mb-4">
+                    <Badge className="bg-accent text-primary border-0 px-4 py-2 text-sm font-medium mb-4">
                         Success Stories
                     </Badge>
                     <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                        Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-pink-600">Thousands</span>
+                        Trusted by <span className="text-primary">Thousands</span>
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         See how brands and creators are achieving incredible results with AdPromoo
                     </p>
                 </motion.div>
@@ -515,20 +515,19 @@ export function TestimonialsSection() {
                         className="flex flex-col items-center mb-10"
                     >
                         <div className="flex items-center gap-3 mb-3">
-                            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/30">
-                                <Users className="h-6 w-6 text-white" />
+                            <div className="h-12 w-12 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
+                                <Users className="h-6 w-6 text-primary" />
                             </div>
                             <div className="relative">
-                                <h3 className="text-2xl md:text-3xl font-bold">
-                                    What <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 animate-gradient-x">Brands</span> Say
+                                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                                    What <span className="text-primary">Brands</span> Say
                                 </h3>
-                                <Sparkles className="absolute -top-2 -right-6 h-5 w-5 text-amber-400 animate-pulse" />
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-violet-500" />
-                            <div className="h-1.5 w-20 rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500" />
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-pink-500" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-primary" />
+                            <div className="h-1.5 w-20 rounded-full bg-primary" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-primary" />
                         </div>
                     </motion.div>
 
@@ -591,20 +590,19 @@ export function TestimonialsSection() {
                         className="flex flex-col items-center mb-10"
                     >
                         <div className="flex items-center gap-3 mb-3">
-                            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-lg shadow-pink-500/30">
-                                <Star className="h-6 w-6 text-white" />
+                            <div className="h-12 w-12 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
+                                <Star className="h-6 w-6 text-primary" />
                             </div>
                             <div className="relative">
-                                <h3 className="text-2xl md:text-3xl font-bold">
-                                    What <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-600 to-orange-500 animate-gradient-x">Creators</span> Say
+                                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                                    What <span className="text-primary">Creators</span> Say
                                 </h3>
-                                <Sparkles className="absolute -top-2 -right-6 h-5 w-5 text-amber-400 animate-pulse" />
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-pink-500" />
-                            <div className="h-1.5 w-20 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-orange-500" />
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-orange-500" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-primary" />
+                            <div className="h-1.5 w-20 rounded-full bg-primary" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-primary" />
                         </div>
                     </motion.div>
 
@@ -680,7 +678,7 @@ export function TestimonialsSection() {
                             whileHover={{ scale: 1.05, y: -5 }}
                             className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl hover:border-violet-200 transition-all duration-300 cursor-default"
                         >
-                            <p className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-pink-600">
+                            <p className="text-2xl md:text-3xl font-bold text-primary">
                                 {stat.value}
                             </p>
                             <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
@@ -698,7 +696,7 @@ export function TestimonialsSection() {
                     <Link to="/stories">
                         <Button
                             size="lg"
-                            className="bg-gradient-to-r from-violet-600 to-pink-600 hover:from-violet-700 hover:to-pink-700 text-white shadow-xl shadow-violet-500/30 px-8 py-6 text-lg font-semibold group"
+                            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/30 px-8 py-6 text-lg font-semibold group"
                         >
                             Read More Success Stories
                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

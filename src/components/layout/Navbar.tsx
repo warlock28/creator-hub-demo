@@ -1,32 +1,18 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   X,
-  Search,
-  Bell,
-  User,
-  Settings,
-  LogOut,
   ChevronDown,
   Sparkles,
   BookOpen,
-  HelpCircle,
   Briefcase,
   Users,
   CreditCard,
   ChevronRight,
   Home,
+  Newspaper,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -44,6 +30,12 @@ const navLinks = [
     label: "Brands",
     icon: Briefcase,
     description: "Shop from top brands",
+  },
+  {
+    href: "/content",
+    label: "Content",
+    icon: Newspaper,
+    description: "Deals & Updates",
   },
   {
     href: "/how-it-works",
@@ -136,7 +128,6 @@ export function Navbar() {
   const navigate = useNavigate();
 
   // No authentication required
-  const isLoggedIn = false; // Always show non-logged-in state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -334,118 +325,24 @@ export function Navbar() {
 
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center gap-2">
-              {isLoggedIn ? (
-                <>
-                  {/* Notifications */}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full relative hover:bg-violet-50"
-                      >
-                        <Bell className="h-5 w-5 text-gray-700" />
-                        {userNotifications > 0 && (
-                          <Badge
-                            variant="destructive"
-                            className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
-                          >
-                            {userNotifications}
-                          </Badge>
-                        )}
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-80">
-                      <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <div className="max-h-96 overflow-y-auto">
-                        <div className="p-4 text-center text-sm text-muted-foreground">
-                          No new notifications
-                        </div>
-                      </div>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-
-                  {/* User Profile Dropdown */}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="gap-2 rounded-full hover:bg-violet-50"
-                      >
-                        {userProfile?.avatar_url ? (
-                          <img src={userProfile.avatar_url} alt={userProfile.full_name || 'User'} className="h-8 w-8 rounded-full object-cover" />
-                        ) : (
-                          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center text-white font-semibold text-sm">
-                            {userProfile?.full_name?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase()}
-                          </div>
-                        )}
-                        <ChevronDown className="h-3 w-3 text-gray-700" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56">
-                      <DropdownMenuLabel>
-                        <div>
-                          <p className="font-medium">{userProfile?.full_name || 'User'}</p>
-                          <p className="text-xs text-gray-500">
-                            {user?.email}
-                          </p>
-                        </div>
-                      </DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <Link to="/creator/profile">
-                        <DropdownMenuItem className="cursor-pointer">
-                          <User className="h-4 w-4 mr-2" />
-                          My Profile
-                        </DropdownMenuItem>
-                      </Link>
-                      <Link to={dashboardLink}>
-                        <DropdownMenuItem className="cursor-pointer">
-                          <Briefcase className="h-4 w-4 mr-2" />
-                          Dashboard
-                        </DropdownMenuItem>
-                      </Link>
-                      <Link to="/creator/settings">
-                        <DropdownMenuItem className="cursor-pointer">
-                          <Settings className="h-4 w-4 mr-2" />
-                          Settings
-                        </DropdownMenuItem>
-                      </Link>
-                      <DropdownMenuItem className="cursor-pointer">
-                        <HelpCircle className="h-4 w-4 mr-2" />
-                        Help & Support
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="cursor-pointer text-red-600" onClick={handleLogout}>
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Log out
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </>
-              ) : (
-                <>
-                  <Link to="/login">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-gray-700 hover:text-violet-700 hover:bg-violet-50 font-medium"
-                    >
-                      Log in
-                    </Button>
-                  </Link>
-                  <Link to="/join">
-                    <Button
-                      size="sm"
-                      className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-lg shadow-violet-500/30 font-semibold"
-                    >
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      Join Free
-                    </Button>
-                  </Link>
-                </>
-              )}
+              <Link to="/login">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-700 hover:text-violet-700 hover:bg-violet-50 font-medium"
+                >
+                  Log in
+                </Button>
+              </Link>
+              <Link to="/join">
+                <Button
+                  size="sm"
+                  className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-lg shadow-violet-500/30 font-semibold"
+                >
+                  <Sparkles className="h-4 w-4 mr-2" />
+                  Join Free
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -642,67 +539,30 @@ export function Navbar() {
 
                 {/* Bottom Auth Section */}
                 <div className="flex-shrink-0 p-4 border-t border-gray-100 bg-gray-50/50">
-                  {isLoggedIn ? (
-                    <div className="space-y-2">
-                      <Link
-                        to="/profile"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start gap-3 h-11 rounded-xl"
-                        >
-                          <User className="h-4 w-4" />
-                          My Profile
-                        </Button>
-                      </Link>
-                      <Link
-                        to={dashboardLink}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Button
-                          variant="outline"
-                          className="w-full justify-start gap-3 h-11 rounded-xl"
-                        >
-                          <Briefcase className="h-4 w-4" />
-                          Dashboard
-                        </Button>
-                      </Link>
+                  <div className="flex gap-3">
+                    <Link
+                      to="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1"
+                    >
                       <Button
                         variant="outline"
-                        className="w-full justify-start gap-3 h-11 rounded-xl text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
-                        onClick={handleLogout}
+                        className="w-full h-11 rounded-xl font-semibold"
                       >
-                        <LogOut className="h-4 w-4" />
-                        Log out
+                        Log in
                       </Button>
-                    </div>
-                  ) : (
-                    <div className="flex gap-3">
-                      <Link
-                        to="/login"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex-1"
-                      >
-                        <Button
-                          variant="outline"
-                          className="w-full h-11 rounded-xl font-semibold"
-                        >
-                          Log in
-                        </Button>
-                      </Link>
-                      <Link
-                        to="/join"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex-1"
-                      >
-                        <Button className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-lg font-semibold">
-                          <Sparkles className="h-4 w-4 mr-2" />
-                          Join Free
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
+                    </Link>
+                    <Link
+                      to="/join"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1"
+                    >
+                      <Button className="w-full h-11 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-lg font-semibold">
+                        <Sparkles className="h-4 w-4 mr-2" />
+                        Join Free
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

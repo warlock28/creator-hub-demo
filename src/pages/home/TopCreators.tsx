@@ -119,12 +119,13 @@ function PlatformIcon({ platform }: { platform: string }) {
 function CreatorCard({ creator }: { creator: typeof topCreators[0] }) {
     return (
         <div className="flex-shrink-0 w-[280px] sm:w-[300px] bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100">
-            {/* Cover gradient */}
-            <div className="h-16 bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500 relative">
+            {/* Cover gradient - changed to theme accent */}
+            <div className="h-16 bg-accent relative overflow-hidden">
+                <div className="absolute inset-0 bg-primary/10" />
                 {/* Platform badge */}
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 text-xs font-medium">
+                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 text-xs font-medium shadow-sm">
                     <PlatformIcon platform={creator.platform} />
-                    <span className="capitalize">{creator.platform}</span>
+                    <span className="capitalize text-foreground">{creator.platform}</span>
                 </div>
             </div>
 
@@ -134,10 +135,10 @@ function CreatorCard({ creator }: { creator: typeof topCreators[0] }) {
                     <img
                         src={creator.avatar}
                         alt={creator.name}
-                        className="w-20 h-20 rounded-xl object-cover border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-300"
+                        className="w-20 h-20 rounded-xl object-cover border-4 border-card shadow-md group-hover:scale-105 transition-transform duration-300"
                     />
                     {creator.verified && (
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center border-2 border-white">
+                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center border-2 border-card">
                             <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
@@ -160,10 +161,10 @@ function CreatorCard({ creator }: { creator: typeof topCreators[0] }) {
 
                 {/* Category & Location */}
                 <div className="flex items-center gap-3 mb-3 text-xs">
-                    <span className="px-2.5 py-1 rounded-full bg-violet-100 text-violet-700 font-medium">
+                    <span className="px-2.5 py-1 rounded-full bg-secondary text-foreground font-medium border border-border">
                         {creator.category}
                     </span>
-                    <span className="flex items-center gap-1 text-gray-500">
+                    <span className="flex items-center gap-1 text-muted-foreground">
                         <MapPin className="h-3 w-3" />
                         {creator.location}
                     </span>
@@ -191,12 +192,12 @@ export function TopCreators() {
     const duplicatedCreators = [...topCreators, ...topCreators];
 
     return (
-        <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50">
+        <section className="relative py-16 md:py-24 overflow-hidden bg-background">
 
-            {/* Background decoration */}
+            {/* Background decoration - simplified */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-violet-200/30 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-72 md:h-72 bg-pink-200/30 rounded-full blur-3xl" />
+                <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-accent rounded-full blur-3xl opacity-50" />
+                <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-72 md:h-72 bg-secondary rounded-full blur-3xl opacity-50" />
             </div>
 
             <div className="relative z-10">
@@ -209,19 +210,19 @@ export function TopCreators() {
                         className="flex flex-col items-center"
                     >
                         <div className="flex items-center gap-3 mb-3">
-                            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/30">
-                                <Star className="h-6 w-6 text-white" />
+                            <div className="h-12 w-12 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
+                                <Star className="h-6 w-6 text-primary" />
                             </div>
                             <div className="relative">
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-                                    Top <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600">Creators</span> This Week
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-display text-foreground">
+                                    Top <span className="text-primary">Creators</span> This Week
                                 </h2>
                             </div>
                         </div>
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-violet-500" />
-                            <div className="h-1.5 w-20 rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500" />
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-pink-500" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-primary" />
+                            <div className="h-1.5 w-20 rounded-full bg-primary" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-primary" />
                         </div>
                     </motion.div>
 
@@ -260,7 +261,7 @@ export function TopCreators() {
                 >
                     <a
                         href="/discover"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                         Explore All Creators
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

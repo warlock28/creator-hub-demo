@@ -54,21 +54,21 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                 <div
                     className="relative z-10 p-5 border-b flex-shrink-0"
                     style={{
-                        background: 'linear-gradient(180deg, #FFF7ED 0%, #FFFFFF 100%)',
-                        borderColor: '#FED7AA'
+                        background: 'linear-gradient(180deg, #FFF8F0 0%, #FFFFFF 100%)',
+                        borderColor: '#F5E6D3'
                     }}
                 >
                     <h2 className="font-display text-sm font-bold flex items-center gap-3">
                         <div
                             className="h-8 w-8 rounded-xl flex items-center justify-center"
                             style={{
-                                background: 'linear-gradient(135deg, #FB923C 0%, #EA580C 100%)',
-                                boxShadow: '0 4px 12px rgba(251, 146, 60, 0.35)'
+                                background: 'linear-gradient(135deg, #D4AF37 0%, #C19A2E 100%)',
+                                boxShadow: '0 4px 12px rgba(212, 175, 55, 0.35)'
                             }}
                         >
                             <Zap className="h-4 w-4 text-white" />
                         </div>
-                        <span style={{ color: '#1C1917', letterSpacing: '0.02em' }}>
+                        <span style={{ color: '#1A1A1A', letterSpacing: '0.02em' }}>
                             Select a Package
                         </span>
                     </h2>
@@ -86,13 +86,13 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                 boxShadow: '0 2px 8px -2px rgba(0, 0, 0, 0.06), 0 4px 16px -4px rgba(0, 0, 0, 0.04)',
                             }}
                         >
-                            {/* Hover Overlay - adds blue theme on hover */}
+                            {/* Hover Overlay - adds accent theme on hover */}
                             <div
                                 className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                                 style={{
-                                    border: '2px solid #3B82F6',
-                                    background: 'linear-gradient(145deg, #EFF6FF 0%, #F8FAFC 100%)',
-                                    boxShadow: '0 8px 24px -4px rgba(59, 130, 246, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
+                                    border: '2px solid #D4AF37',
+                                    background: 'linear-gradient(145deg, #FFFBF0 0%, #FFF8E7 100%)',
+                                    boxShadow: '0 8px 24px -4px rgba(212, 175, 55, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
                                 }}
                             />
 
@@ -110,7 +110,7 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                     <h3
                                         className="font-bold text-lg leading-snug transition-colors duration-200"
                                         style={{
-                                            color: '#2563EB',
+                                            color: '#1A1A1A',
                                             letterSpacing: '-0.01em'
                                         }}
                                     >
@@ -120,8 +120,8 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                     <div
                                         className="opacity-0 group-hover:opacity-100 h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity duration-200"
                                         style={{
-                                            background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
-                                            boxShadow: '0 2px 6px rgba(59, 130, 246, 0.4)'
+                                            background: 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
+                                            boxShadow: '0 2px 6px rgba(46, 125, 50, 0.4)'
                                         }}
                                     >
                                         <CheckCircle2 className="h-3 w-3 text-white" />
@@ -132,7 +132,7 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                 <p
                                     className="text-sm leading-relaxed line-clamp-2 mb-4 transition-colors duration-200"
                                     style={{
-                                        color: '#6B7280'
+                                        color: '#666666'
                                     }}
                                 >
                                     {service.description}
@@ -150,22 +150,22 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                     <div
                                         className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
                                         style={{
-                                            background: 'linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 100%)',
+                                            background: 'linear-gradient(135deg, #FFFBF0 0%, #FFF4E0 100%)',
                                         }}
                                     />
 
                                     <div className="flex flex-col gap-0.5 relative z-10">
                                         <span
                                             className="text-[9px] uppercase tracking-wider font-semibold"
-                                            style={{ color: '#78716C' }}
+                                            style={{ color: '#999999' }}
                                         >
                                             Delivery
                                         </span>
                                         <div className="flex items-center gap-1">
-                                            <Clock className="h-3 w-3" style={{ color: '#78716C' }} />
+                                            <Clock className="h-3 w-3" style={{ color: '#999999' }} />
                                             <span
                                                 className="text-xs font-bold"
-                                                style={{ color: '#44403C' }}
+                                                style={{ color: '#333333' }}
                                             >
                                                 {service.deliveryDays} days
                                             </span>
@@ -174,13 +174,13 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                     <div className="flex flex-col items-end gap-0.5 relative z-10">
                                         <span
                                             className="text-[9px] uppercase tracking-wider font-semibold"
-                                            style={{ color: '#78716C' }}
+                                            style={{ color: '#999999' }}
                                         >
                                             Price
                                         </span>
                                         <span
                                             className="font-bold text-lg number-display"
-                                            style={{ color: '#1C1917' }}
+                                            style={{ color: '#D4AF37' }}
                                         >
                                             ₹{service.price.toLocaleString()}
                                         </span>
@@ -200,16 +200,16 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                     style={{
                                         background: isInCart(creator.id, service.id)
                                             ? 'transparent'
-                                            : 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)',
+                                            : 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
                                         border: isInCart(creator.id, service.id)
-                                            ? '2px solid #2563EB'
+                                            ? '2px solid #2E7D32'
                                             : 'none',
                                         color: isInCart(creator.id, service.id)
-                                            ? '#2563EB'
+                                            ? '#2E7D32'
                                             : '#FFFFFF',
                                         boxShadow: isInCart(creator.id, service.id)
                                             ? 'none'
-                                            : '0 4px 14px rgba(37, 99, 235, 0.3)'
+                                            : '0 4px 14px rgba(46, 125, 50, 0.35)'
                                     }}
                                 >
                                     {isInCart(creator.id, service.id) ? (
@@ -242,8 +242,8 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                         onClick={() => navigate('/cart')}
                         className="relative z-10 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-150 active:scale-[0.98]"
                         style={{
-                            background: 'linear-gradient(135deg, #FB923C 0%, #EA580C 100%)',
-                            boxShadow: '0 4px 14px rgba(251, 146, 60, 0.35)',
+                            background: 'linear-gradient(135deg, #D4AF37 0%, #C19A2E 100%)',
+                            boxShadow: '0 4px 14px rgba(212, 175, 55, 0.35)',
                             color: '#FFFFFF'
                         }}
                     >
@@ -253,9 +253,9 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                                 <span
                                     className="absolute -top-2 -right-2 h-4 w-4 rounded-full flex items-center justify-center text-[10px] font-bold"
                                     style={{
-                                        background: '#1C1917',
+                                        background: '#1A1A1A',
                                         color: '#FFFFFF',
-                                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)'
+                                        boxShadow: '0 2px 6px rgba(26, 26, 26, 0.3)'
                                     }}
                                 >
                                     {cartCount}
@@ -270,8 +270,8 @@ export function ServicesSectionDesktop({ creator, selectedService, setSelectedSe
                         onClick={() => navigate(`/creator/${creator.id}/services`)}
                         className="relative z-10 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-150 active:scale-[0.98]"
                         style={{
-                            background: 'linear-gradient(135deg, #44403C 0%, #1C1917 100%)',
-                            boxShadow: '0 4px 14px rgba(28, 25, 23, 0.25)',
+                            background: 'linear-gradient(135deg, #1A1A1A 0%, #000000 100%)',
+                            boxShadow: '0 4px 14px rgba(26, 26, 26, 0.3)',
                             color: '#FFFFFF'
                         }}
                     >

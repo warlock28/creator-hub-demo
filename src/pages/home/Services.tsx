@@ -124,8 +124,8 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(service.color)} opacity-60 group-hover:opacity-70 transition-opacity duration-300`} />
+                {/* Gradient overlay - simplified */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${getGradient(service.color)} opacity-40 group-hover:opacity-50 transition-opacity duration-300`} />
 
                 {/* Icon badge */}
                 <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -166,13 +166,12 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export function Services() {
     return (
-        <section id="services" className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
+        <section id="services" className="relative py-16 md:py-24 overflow-hidden bg-background">
 
-            {/* Background decoration */}
+            {/* Background decoration - simplified */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-violet-200/40 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-1/4 w-48 h-48 md:w-72 md:h-72 bg-pink-200/40 rounded-full blur-3xl" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl" />
+                <div className="absolute top-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-accent rounded-full blur-3xl opacity-50" />
+                <div className="absolute bottom-0 left-1/4 w-48 h-48 md:w-72 md:h-72 bg-secondary rounded-full blur-3xl opacity-50" />
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -185,19 +184,19 @@ export function Services() {
                         className="flex flex-col items-center"
                     >
                         <div className="flex items-center gap-3 mb-3">
-                            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-lg shadow-pink-500/30">
-                                <Sparkles className="h-6 w-6 text-white" />
+                            <div className="h-12 w-12 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/30">
+                                <Sparkles className="h-6 w-6 text-primary" />
                             </div>
                             <div className="relative">
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-                                    Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-rose-600 to-violet-600">Services</span>
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold font-display text-foreground">
+                                    Our <span className="text-primary">Services</span>
                                 </h2>
                             </div>
                         </div>
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-pink-500" />
-                            <div className="h-1.5 w-20 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-violet-500" />
-                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-violet-500" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-r from-transparent to-primary" />
+                            <div className="h-1.5 w-20 rounded-full bg-primary" />
+                            <div className="h-1 w-12 rounded-full bg-gradient-to-l from-transparent to-primary" />
                         </div>
                     </motion.div>
 
@@ -206,7 +205,7 @@ export function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto"
+                        className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto"
                     >
                         Everything you need to run successful creator campaigns, from discovery to delivery
                     </motion.p>
@@ -230,20 +229,20 @@ export function Services() {
                     <div className="inline-flex flex-col sm:flex-row items-center gap-4">
                         <a
                             href="/for-customers"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                         >
                             Get Started
                             <ArrowRight className="w-4 h-4" />
                         </a>
                         <a
                             href="/how-it-works"
-                            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-violet-300 text-violet-700 font-semibold rounded-full hover:bg-violet-50 transition-all duration-300"
+                            className="inline-flex items-center gap-2 px-6 py-3 border border-input text-foreground font-semibold rounded-full hover:bg-muted transition-all duration-300"
                         >
                             How It Works
                         </a>
                     </div>
 
-                    <p className="text-sm text-gray-500 mt-6 max-w-lg mx-auto">
+                    <p className="text-sm text-muted-foreground mt-6 max-w-lg mx-auto">
                         Join 500+ brands already using AdPromoo to run successful influencer campaigns
                     </p>
                 </motion.div>

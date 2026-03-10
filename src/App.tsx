@@ -51,6 +51,7 @@ import ForCustomer from "./pages/customer/ForCustomer";
 import BagPage from "./pages/customer/BagPage";
 import OrderPage from "./pages/customer/OrderPage";
 import ProductDetailPage from "./pages/customer/products/ProductDetailPage";
+import ContentPage from "./pages/content/ContentPage";
 
 const queryClient = new QueryClient();
 
@@ -106,6 +107,7 @@ const App = () => (
               <Route path="/customer/brands" element={<BrandDiscoveryPage />} />
               <Route path="/customer/brands/:brandId" element={<BrandDetailsPage />} />
               <Route path="/customer/brands/:brandId/product/:productId" element={<ProductDetailPage />} />
+              <Route path="/content" element={<ContentPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

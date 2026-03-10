@@ -11,12 +11,14 @@ import { TestimonialsSection } from "@/pages/home/Testimonials";
 const Index = () => {
   return (
     <PublicLayout>
-      <HeroSection />
-      <Services />
-      <TopCreators />
-      <WomenCreatorsSection />
-      <TestimonialsSection />
-      <CTASection />
+      <div className="theme-home">
+        <HeroSection />
+        <Services />
+        <TopCreators />
+        <WomenCreatorsSection />
+        <TestimonialsSection />
+        <CTASection />
+      </div>
     </PublicLayout>
   );
 };
