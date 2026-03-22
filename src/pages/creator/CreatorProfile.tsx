@@ -9,6 +9,7 @@ import NotFound from "../static-pages/NotFound";
 import { useCreatorProfile } from "@/hooks/useCreatorProfile";
 import {
     ProfileHeader,
+    CreatorAnalyticsSection,
     HighlightsSection,
     ServicesSectionMobile,
     ServicesSectionDesktop,
@@ -101,6 +102,9 @@ export default function CreatorProfile() {
 
                         {/* Highlights Section */}
                         <HighlightsSection creator={creator} />
+
+                        {/* Analytics Section (Private) */}
+                        <CreatorAnalyticsSection />
 
                         {/* Services Section - Mobile/Tablet Only */}
                         <ServicesSectionMobile

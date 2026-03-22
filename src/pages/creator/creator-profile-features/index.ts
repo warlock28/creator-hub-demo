@@ -1,5 +1,6 @@
 // Export all creator profile feature components
 export { ProfileHeader } from './ProfileHeader';
+export { CreatorAnalyticsSection } from './CreatorAnalyticsSection';
 export { HighlightsSection } from './HighlightsSection';
 export { ServicesSectionMobile } from './ServicesSectionMobile';
 export { ServicesSectionDesktop } from './ServicesSectionDesktop';

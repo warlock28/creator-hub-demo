@@ -171,22 +171,25 @@ function DesktopActionButtons() {
             id: 'message',
             icon: MessageCircle,
             label: 'Message',
-            background: '#2563EB',
-            shadow: 'rgba(37, 99, 235, 0.3)',
+            bgClass: 'bg-blue-100 dark:bg-blue-900/40',
+            textClass: 'text-blue-700 dark:text-blue-300',
+            shadow: 'rgba(37, 99, 235, 0.2)',
         },
         {
             id: 'appointment',
             icon: Users,
             label: '1:1 Meet',
-            background: '#7C3AED',
-            shadow: 'rgba(124, 58, 237, 0.3)',
+            bgClass: 'bg-violet-100 dark:bg-violet-900/40',
+            textClass: 'text-violet-700 dark:text-violet-300',
+            shadow: 'rgba(124, 58, 237, 0.2)',
         },
         {
             id: 'thanks',
             icon: IndianRupee,
             label: 'Thanks',
-            background: '#10B981',
-            shadow: 'rgba(16, 185, 129, 0.3)',
+            bgClass: 'bg-emerald-100 dark:bg-emerald-900/40',
+            textClass: 'text-emerald-700 dark:text-emerald-300',
+            shadow: 'rgba(16, 185, 129, 0.2)',
         },
     ];
 
@@ -207,9 +210,8 @@ function DesktopActionButtons() {
                                 scale: isHovered ? 1.05 : 1,
                             }}
                             transition={{ duration: 0.2, ease: 'easeOut' }}
-                            className="absolute right-0 top-0 h-10 rounded-full font-medium text-sm flex items-center justify-center gap-2 text-white overflow-hidden cursor-pointer"
+                            className={`absolute right-0 top-0 h-10 rounded-full font-bold text-sm flex items-center justify-center gap-2 overflow-hidden cursor-pointer ${btn.bgClass} ${btn.textClass}`}
                             style={{
-                                background: btn.background,
                                 boxShadow: isHovered
                                     ? `0 6px 16px ${btn.shadow}`
                                     : `0 3px 10px ${btn.shadow}`,
@@ -261,28 +263,21 @@ export function ProfileHeader({ creator }: ProfileHeaderProps) {
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
             }} />
 
-            {/* Top accent line */}
-            <div className="absolute top-0 left-0 right-0 h-1" style={{
-                background: '#2563EB'
-            }} />
-
             <div className="relative z-10">
                 {/* Top Section - Avatar + Info + Icons */}
                 <div className="flex items-start gap-4">
                     {/* Avatar + Mobile Icons Column */}
                     <div className="relative flex-shrink-0">
                         {/* Avatar */}
-                        <div className="p-[3px] rounded-xl sm:rounded-2xl" style={{
-                            background: 'linear-gradient(135deg, #3B82F6 0%, #0EA5E9 50%, #EC4899 100%)'
-                        }}>
+                        <div className="rounded-xl sm:rounded-2xl border border-slate-900 dark:border-slate-400 overflow-hidden shadow-sm">
                             {creator.avatar ? (
                                 <img
                                     src={creator.avatar}
                                     alt={creator.name}
-                                    className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-xl sm:rounded-2xl object-cover bg-white dark:bg-slate-900"
+                                    className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 object-cover bg-white dark:bg-slate-900"
                                 />
                             ) : (
-                                <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-3xl sm:text-4xl md:text-5xl">
+                                <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-3xl sm:text-4xl md:text-5xl">
                                     {creator.name.charAt(0).toUpperCase()}
                                 </div>
                             )}
@@ -386,10 +381,9 @@ export function ProfileHeader({ creator }: ProfileHeaderProps) {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="rounded-full h-8 px-2 font-medium text-[10px] flex items-center justify-center gap-1 text-white transition-all"
+                            className="rounded-full h-8 px-2 font-bold text-[10px] flex items-center justify-center gap-1 transition-all bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
                             style={{
-                                background: '#2563EB',
-                                boxShadow: '0 2px 8px rgba(37, 99, 235, 0.2)'
+                                boxShadow: '0 2px 8px rgba(37, 99, 235, 0.15)'
                             }}
                         >
                             <MessageCircle className="h-3 w-3" />
@@ -400,10 +394,9 @@ export function ProfileHeader({ creator }: ProfileHeaderProps) {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="rounded-full h-8 px-2 font-medium text-[10px] flex items-center justify-center gap-1 text-white transition-all"
+                            className="rounded-full h-8 px-2 font-bold text-[10px] flex items-center justify-center gap-1 transition-all bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300"
                             style={{
-                                background: '#7C3AED',
-                                boxShadow: '0 2px 8px rgba(124, 58, 237, 0.2)'
+                                boxShadow: '0 2px 8px rgba(124, 58, 237, 0.15)'
                             }}
                         >
                             <Calendar className="h-3 w-3" />
@@ -414,10 +407,9 @@ export function ProfileHeader({ creator }: ProfileHeaderProps) {
                         <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="rounded-full h-8 px-2 font-medium text-[10px] flex items-center justify-center gap-1 text-white transition-all"
+                            className="rounded-full h-8 px-2 font-bold text-[10px] flex items-center justify-center gap-1 transition-all bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300"
                             style={{
-                                background: '#10B981',
-                                boxShadow: '0 2px 8px rgba(16, 185, 129, 0.2)'
+                                boxShadow: '0 2px 8px rgba(16, 185, 129, 0.15)'
                             }}
                         >
                             <IndianRupee className="h-3 w-3" />

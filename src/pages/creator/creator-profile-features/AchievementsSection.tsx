@@ -29,34 +29,14 @@ export function AchievementsSection({ creator }: AchievementsSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-amber-100/50 dark:border-amber-900/30 shadow-xl overflow-hidden"
-            style={{
-                background: 'linear-gradient(135deg, #FFFFFF 0%, #FFF7ED 50%, #FDF2F8 100%)'
-            }}
+            className="relative bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200/60 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-shadow duration-300 overflow-hidden"
         >
-            <div className="absolute inset-0 hidden dark:block" style={{
-                background: 'linear-gradient(135deg, #0B1220 0%, #2A1700 50%, #2B123F 100%)'
-            }} />
-
-            <div className="absolute top-0 left-0 right-0 h-1.5" style={{
-                background: 'linear-gradient(90deg, #F59E0B 0%, #FB7185 50%, #8B5CF6 100%)'
-            }} />
-
             <div className="relative z-10">
                 <h3 className="font-display text-lg sm:text-xl font-extrabold mb-6 sm:mb-8 flex items-center gap-3">
-                    <div className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl flex items-center justify-center shadow-lg" style={{
-                        background: 'linear-gradient(135deg, #FBBF24 0%, #FB7185 100%)'
-                    }}>
-                        <Trophy className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+                    <div className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl flex items-center justify-center shadow-lg bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
+                        <Trophy className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
-                    <span className="bg-clip-text text-transparent" style={{
-                        backgroundImage: 'linear-gradient(90deg, #92400E 0%, #9D174D 100%)'
-                    }}>
-                        <span className="dark:hidden">Achievements & Awards</span>
-                    </span>
-                    <span className="hidden dark:inline bg-clip-text text-transparent" style={{
-                        backgroundImage: 'linear-gradient(90deg, #FCD34D 0%, #F9A8D4 100%)'
-                    }}>
+                    <span className="text-amber-700 dark:text-amber-400">
                         Achievements & Awards
                     </span>
                 </h3>
@@ -84,10 +64,8 @@ export function AchievementsSection({ creator }: AchievementsSectionProps) {
 
                                 <div className="relative z-10 flex items-start gap-4">
                                     <div className="relative">
-                                        <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg" style={{
-                                            background: 'linear-gradient(135deg, #FBBF24 0%, #FB7185 100%)'
-                                        }}>
-                                            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                                        <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
+                                            <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                                         </div>
                                     </div>
 

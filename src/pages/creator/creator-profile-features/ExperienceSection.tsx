@@ -21,19 +21,8 @@ export function ExperienceSection({ creator }: ExperienceSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-blue-100/50 dark:border-blue-900/30 shadow-xl overflow-hidden"
-            style={{
-                background: 'linear-gradient(180deg, #FFFFFF 0%, #F0F9FF 100%)'
-            }}
+            className="relative bg-white dark:bg-slate-900 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200/60 dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-shadow duration-300 overflow-hidden"
         >
-            <div className="absolute inset-0 hidden dark:block" style={{
-                background: 'linear-gradient(180deg, #0B1220 0%, #0F172A 100%)'
-            }} />
-
-            <div className="absolute top-0 left-0 right-0 h-1 sm:h-1.5" style={{
-                background: 'linear-gradient(90deg, #2563EB 0%, #06B6D4 100%)'
-            }} />
-
             <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4 sm:mb-5">
                     <h3 className="font-display text-base sm:text-lg md:text-xl font-extrabold flex items-center gap-2 sm:gap-3">
